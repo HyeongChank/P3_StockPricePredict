@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Input Form</title>
+</head>
+<body>
+    <form method="POST" action="/result">
+        <label for="s_date">Start Date:</label>
+        <input type="date" id="s_date" name="s_date"><br><br>
+        <label for="e_date">End Date:</label>
+        <input type="date" id="e_date" name="e_date"><br><br>
+        <p>코스피 .KS, 코스닥 .KQ(example : 삼성전자 코드번호 005930, 코스피 종목 => 005930.KS 입력)</p>
+        <label for="code">Code:</label>
+        <input type="text" id="code" name="code"><br><br>
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>

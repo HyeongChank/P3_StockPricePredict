@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Result</title>
+</head>
+<body>
+    <p>Stock Name : {{ stock_name }}</p>
+    <p>Code: {{ code }}</p>
+    <p>Start Date: {{ s_date }}</p>
+    <p>End Date: {{ e_date }}</p>
+    <P>선택기간 데이터 학습 결과에 따른 향후 예측</P>
+    <p>{{ train_Y }}</p>
+    <p>tommorow predict: {{ tomorrow_pred }}</p>
+    <p>Graph(상:실제, 하:향후예측)</p>
+    <img src="{{ url_for('static', filename='graph.png') }}" alt="graph">
+</body>
+</html>
