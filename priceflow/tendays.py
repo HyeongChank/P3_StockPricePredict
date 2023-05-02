@@ -112,10 +112,11 @@ def make_graph(train_predict_df, train_Y_df, code, s_date, e_date):
     return save_path
     # plt.show()
 
-def process(s_date, e_date, code):
+def process(s_date, e_date, code, new_look_back):
     epoch = 100
     # ref_back(start 4월 1일 end 4월 30일 ref_bake 10 이면 3월 20일~ 4월 20일 까지 데이터 이용)
-    ref_back = 10
+    ref_back = int(new_look_back)
+    print(type(ref_back))
     scaler, train, test = load_data_scale(code, s_date, e_date)
     train_predict, test_predict, train_Y, test_Y, train_X, tomorrow_pred = make_model(train, test, ref_back, epoch, scaler)
 
@@ -125,7 +126,12 @@ def process(s_date, e_date, code):
     make_graph(train_predict_df, train_Y_df, code, s_date, e_date)
     return train_Y, test_Y, tomorrow_pred
 
-
+# if __name__=='__main__':
+#     s_date = '2023-03-01'
+#     e_date = '2023-04-30'
+#     # 코스닥 종목은 .KQ / 코스피 종목은 .KS
+#     code = '005930.KS'
+#     process(s_date, e_date, code)
     
     
 
