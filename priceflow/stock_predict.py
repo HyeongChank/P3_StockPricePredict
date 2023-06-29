@@ -64,7 +64,7 @@ def make_model(train, test, ref_back, epoch):
     tomorrow_pred = scaler.inverse_transform(tomorrow_pred)
     print("Tomorrow's predicted price: ", tomorrow_pred)
 
-    return train_predict, test_predict, train_Y, test_Y, train_X, tomorrow_pred
+    return train_predict, test_predict, train_Y, test_Y, train_X  #, tomorrow_pred
 
 def make_unscale(train_predict, test_predict, train_Y, test_Y):
     # 정규화 된 값을 다시 원래의 값으로 변환
@@ -105,7 +105,7 @@ def process(s_date, e_date, code):
     # ref_back(start 4월 1일 end 4월 30일 ref_bake 10 이면 3월 20일~ 4월 20일 까지 데이터 이용)
     ref_back = 5
     scaler, train, test = load_data_scale(code, s_date, e_date)
-    train_predict, test_predict, train_Y, test_Y, train_X, tomorrow_pred = make_model(train, test, ref_back, epoch)
+    train_predict, test_predict, train_Y, test_Y, train_X = make_model(train, test, ref_back, epoch)
     train_predict, train_Y, test_predict, test_Y = make_unscale(train_predict, test_predict, train_Y, test_Y)
     train_predict_df, train_Y_df = predict_to_df(train_predict, train_Y, test_predict, test_Y)
 
@@ -115,13 +115,13 @@ def process(s_date, e_date, code):
     
     
 if __name__=='__main__':
-    s_date = '2023-03-01'
+    s_date = '2022-03-01'
     e_date = '2023-04-30'
     # 코스닥 종목은 .KQ / 코스피 종목은 .KS
     code = '005930.KS'
     epoch = 30
     # ref_back(start 4월 1일 end 4월 30일 ref_bake 10 이면 3월 20일~ 4월 20일 까지 데이터 이용)
-    ref_back = 5
+    ref_back = 10
     scaler, train, test = load_data_scale(code, s_date, e_date)
     train_predict, test_predict, train_Y, test_Y, train_X = make_model(train, test, ref_back, epoch)
     train_predict, train_Y, test_predict, test_Y = make_unscale(train_predict, test_predict, train_Y, test_Y)

@@ -60,7 +60,7 @@ def make_model(train, test, ref_back, epoch, scaler):
     tomorrow_pred = scaler.inverse_transform(tomorrow_pred)
     print("Tomorrow's predicted price: ", tomorrow_pred)
 
-    return train_predict, test_predict, train_Y, test_Y, train_X, tomorrow_pred
+    return train_predict, test_predict, train_Y, test_Y, tomorrow_pred
 
 def make_unscale(train_predict, test_predict, train_Y, test_Y, scaler):
     # 정규화 된 값을 다시 원래의 값으로 변환
@@ -118,7 +118,7 @@ def process(s_date, e_date, code, new_look_back):
     ref_back = int(new_look_back)
     print(type(ref_back))
     scaler, train, test = load_data_scale(code, s_date, e_date)
-    train_predict, test_predict, train_Y, test_Y, train_X, tomorrow_pred = make_model(train, test, ref_back, epoch, scaler)
+    train_predict, test_predict, train_Y, test_Y, tomorrow_pred = make_model(train, test, ref_back, epoch, scaler)
 
     train_predict, train_Y, test_predict, test_Y = make_unscale(train_predict, test_predict, train_Y, test_Y, scaler)
     train_predict_df, train_Y_df = predict_to_df(train_predict, train_Y, test_predict, test_Y)
